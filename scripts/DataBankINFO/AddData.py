@@ -733,7 +733,7 @@ for sim in sims_working_links :
  #       gro_path = str(dir_wrk) + '/tmp/' + str(ID) + '/' + gro
 
   #  else:
-    get_ipython().system('echo System | gmx trjconv -f {trj} -s {tpr} -dump 0 -o {gro}')
+    os.system('echo System | gmx trjconv -f {trj} -s {tpr} -dump 0 -o {gro}')
     #os.system('echo System | gmx trjconv -f {trj} -s {tpr} -dump 0 -o {gro}')
     #echo System | gmx trjconv -f {trj} -s {tpr} -dump 0 -o {gro}
     gro_path = str(dir_tmp) + '/' + str(ID) + '/' + 'conf.gro'
@@ -828,7 +828,7 @@ for sim in sims_working_links:
     trj = str(sim.get('TRJ')).translate({ord(c): None for c in "']["})
     trj_path = str(dir_tmp) + '/' + str(ID) + '/' + trj
     
-    get_ipython().system('echo System | gmx dump -s {tpr_path} > tpr.txt')
+    os.system('echo System | gmx dump -s {tpr_path} > tpr.txt')
     
     file1 = str(dir_tmp) + '/' + str(ID) + '/tpr.txt'
 
@@ -870,10 +870,10 @@ for sim in sims_working_links:
    # !mkdir {'../Data/Simulations'}
    # !mkdir {'../Data/Simulations/TABLEIII'}
     
-    get_ipython().system("mkdir {'../../Data/Simulations/' + str(head_dir)}")
-    get_ipython().system("mkdir {'../../Data/Simulations/' + str(head_dir) + '/' + str(sub_dir1)}")
-    get_ipython().system("mkdir {'../../Data/Simulations/' + str(head_dir) + '/' + str(sub_dir1) + '/' + str(sub_dir2)}")
-    get_ipython().system("mkdir {'../../Data/Simulations/' + str(head_dir) + '/' + str(sub_dir1) + '/' + str(sub_dir2) + '/' + str(sub_dir3)}")
+    os.system("mkdir {'../../Data/Simulations/' + str(head_dir)}")
+    os.system("mkdir {'../../Data/Simulations/' + str(head_dir) + '/' + str(sub_dir1)}")
+    os.system("mkdir {'../../Data/Simulations/' + str(head_dir) + '/' + str(sub_dir1) + '/' + str(sub_dir2)}")
+    os.system("mkdir {'../../Data/Simulations/' + str(head_dir) + '/' + str(sub_dir1) + '/' + str(sub_dir2) + '/' + str(sub_dir3)}")
     
     DATAdir = '../../Data/Simulations/' + str(head_dir) + '/' + str(sub_dir1) + '/' + str(sub_dir2) + '/' + str(sub_dir3)
     data_directory[str(ID)] = DATAdir
@@ -893,7 +893,7 @@ for sim in sims_working_links:
     with open(outfileDICT, 'w') as f:
         yaml.dump(sim,f, sort_keys=False)
         
-    get_ipython().system("cp {str(dir_tmp)}'/'{str(ID)}'/README.yaml' {data_directory.get(str(ID))}")
+    os.system("cp {str(dir_tmp)}'/'{str(ID)}'/README.yaml' {data_directory.get(str(ID))}")
     #outfileDICT.write(str(sim))
     #outfileDICT.close()
    
@@ -949,7 +949,7 @@ for sim in sims_working_links:
         xtc = str(dir_tmp) + '/' + str(ID) + '/' + str(trj[0][0])  
         tpr = str(dir_tmp) + '/' + str(ID) + '/' + str(tpr[0][0])
         xtcwhole=str(dir_tmp) + '/' + str(ID) + '/whole.xtc'
-        get_ipython().system('echo System | gmx trjconv -f {xtc} -s {tpr} -o {xtcwhole} -pbc mol -b {EQtime}')
+        os.system('echo System | gmx trjconv -f {xtc} -s {tpr} -o {xtcwhole} -pbc mol -b {EQtime}')
    
 
     
@@ -981,8 +981,8 @@ for sim in sims_working_links:
 
         outfile.close()
 
-        get_ipython().system("cp {str(dir_tmp)}'/'{str(ID)}'/'{key}'OrderParameters.dat' {data_directory.get(str(ID))}    ")
-        get_ipython().system("cp {str(dir_tmp)}'/'{str(ID)}'/'{key}'OrderParameters.json' {data_directory.get(str(ID))}  ")
+        os.system("cp {str(dir_tmp)}'/'{str(ID)}'/'{key}'OrderParameters.dat' {data_directory.get(str(ID))}    ")
+        os.system("cp {str(dir_tmp)}'/'{str(ID)}'/'{key}'OrderParameters.json' {data_directory.get(str(ID))}  ")
     
     print("Done calculating order parameters.")
 
