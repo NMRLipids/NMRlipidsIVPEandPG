@@ -924,7 +924,7 @@ for sim in sims_working_links:
     # BATUHAN: Adding a few lines to convert the trajectory into .xtc using MDTRAJ
     #          We will need users to install MDTRAJ in their system so that we can convert other trajectories into xtc
 
-    if software != "gromacs":
+    if ext != "xtc":
         
         print("converting the trajectory into xtc")
         
@@ -934,9 +934,9 @@ for sim in sims_working_links:
         input_pdb = str(dir_tmp) + '/' + str(ID) + '/' + pdb[0][0]
       
         if os.path.isfile(output_traj): # when we're done with the converted trajectory we can simply remove it
-            get_ipython().system('rm {output_traj}')
+            os.system('rm {output_traj}')
         
-        get_ipython().system('echo System | mdconvert {input_traj} -o {output_traj} -t {input_pdb} --force # force overwrite')
+        os.system('echo System | mdconvert {input_traj} -o {output_traj} -t {input_pdb} --force # force overwrite')
         
         # SAMULI: this xtcwhole does not necessarily have molecules as whole. Only if {input_traj} has.
         xtcwhole = str(dir_tmp) + '/' + str(ID) + '/' + 'tmp_converted.xtc'
